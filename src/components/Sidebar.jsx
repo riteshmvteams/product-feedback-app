@@ -72,7 +72,7 @@ const Category = ({ activeCategory, setActiveCategory }) => {
             <li key={category.id}>
               <button
                 onClick={() => handleCategory(category?.name)}
-                className={`px-3 py-2 transition-all duration-200 text-sm font-bold rounded-lg ${
+                className={`px-4 py-2 transition-all duration-200 text-sm font-semibold rounded-lg ${
                   activeCategory === category.name
                     ? "bg-clrBlue-300 text-white"
                     : "bg-clrBlue-100 hover:bg-clrBlue-200 text-clrBlue-300"
@@ -111,7 +111,7 @@ const Roadmap = () => {
                 ></div>
                 <h5 className="text-clrText-primary">{name}</h5>
               </div>
-              <h3>{number}</h3>
+              <h3 className="font-semibold text-clrText-secondary">{number}</h3>
             </li>
           );
         })}

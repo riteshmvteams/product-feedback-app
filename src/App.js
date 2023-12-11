@@ -8,7 +8,7 @@ import Loader from "./components/Loader";
 export default function App() {
   return (
     <Suspense fallback={<Loader />}>
-      <div className="bg-body h-screen w-full md:pt-20">
+      <div className="bg-body min-h-screen w-full md:pt-20 pb-20">
         <RouterProvider router={router} />
       </div>
     </Suspense>
