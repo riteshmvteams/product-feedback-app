@@ -25,7 +25,7 @@ export default function SingleProductFeedbackPage() {
   }, [feedbackid, state?.feedbackList]);
 
   return (
-    <div className="flex flex-col gap-4 max-w-4xl mx-auto w-full px-4">
+    <div className="flex flex-col gap-6 max-w-4xl mx-auto w-full px-4">
       {feedback === null ? (
         <div>You have Entered the wrong id</div>
       ) : (
