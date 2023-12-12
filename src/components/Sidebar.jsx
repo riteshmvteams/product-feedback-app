@@ -2,7 +2,6 @@ import hamburger from "../assets/shared/mobile/icon-hamburger.svg";
 import iconClose from "../assets/shared/mobile/icon-close.svg";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
 import { allCategories, roadmap } from "../utils/static";
 
 export default function Sidebar() {
@@ -11,44 +10,12 @@ export default function Sidebar() {
 
   return (
     <aside className="md:px-10 md:flex gap-4 xl:flex-col xl:px-0 xl:w-64">
-      <div className="h-20 bg-gradient-to-tr from-clrBtn-voilet via-blue-600 to-green-400 px-8 flex items-center justify-between relative md:min-w-[250px] md:h-auto md:min-h-[200px] md:rounded-lg xl:min-w-max">
-        <div className="flex flex-col md:mt-auto md:pb-4 ">
-          <h4 className="text-xl font-semibold text-white">Frontend Mentor</h4>
-          <p className="text-sm opacity-70 text-white">Feedback Board</p>
-        </div>
-        <button
-          className="cursor-pointer hover:opacity-70 transition-all duration-200 outlineChange md:hidden p-2"
-          onClick={() => setMenuOpen((prev) => !prev)}
-        >
-          <img
-            src={menuOpen ? iconClose : hamburger}
-            alt={`${menuOpen ? "iconClose" : "hamburger"}`}
-          />
-        </button>
-        {/* mobile overlay */}
-        <div
-          onClick={() => setMenuOpen(false)}
-          className={`absolute top-full left-0 w-full h-[calc(100vh-80px)] md:hidden transition-all duration-300 ${
-            menuOpen
-              ? "bg-black/30 block opacity-100 visible pointer-events-auto"
-              : "opacity-0 invisible pointer-events-none"
-          }`}
-        ></div>
-        <div
-          className={`max-w-sm w-full fixed h-[calc(100vh-80px)] bg-body px-8 py-10 top-20 md:hidden transition-all duration-300 ${
-            menuOpen ? "right-0" : "right-[-24rem]"
-          }`}
-        >
-          <div className="flex flex-col gap-8">
-            <Category
-              activeCategory={activeCategory}
-              setActiveCategory={setActiveCategory}
-            />
-            <Roadmap />
-          </div>
-        </div>
-      </div>
-
+      <GradientBgSection
+        menuOpen={menuOpen}
+        setMenuOpen={setMenuOpen}
+        activeCategory={activeCategory}
+        setActiveCategory={setActiveCategory}
+      />
       <div className="hidden md:flex gap-4 xl:flex-col">
         <Category
           activeCategory={activeCategory}
@@ -59,6 +26,53 @@ export default function Sidebar() {
     </aside>
   );
 }
+
+const GradientBgSection = ({
+  menuOpen,
+  setMenuOpen,
+  activeCategory,
+  setActiveCategory,
+}) => {
+  return (
+    <div className="fixed z-10 md:relative min-w-full h-20 bg-gradient-to-tr from-clrBtn-voilet via-blue-600 to-green-400 px-8 flex items-center justify-between md:min-w-[250px] md:h-auto md:min-h-[200px] md:rounded-lg xl:min-w-max">
+      <div className="flex flex-col md:mt-auto md:pb-4 ">
+        <h4 className="text-xl font-semibold text-white">Frontend Mentor</h4>
+        <p className="text-sm opacity-70 text-white">Feedback Board</p>
+      </div>
+      <button
+        className="cursor-pointer hover:opacity-70 transition-all duration-200 outlineChange md:hidden p-2"
+        onClick={() => setMenuOpen((prev) => !prev)}
+      >
+        <img
+          src={menuOpen ? iconClose : hamburger}
+          alt={`${menuOpen ? "iconClose" : "hamburger"}`}
+        />
+      </button>
+      {/* mobile overlay */}
+      <div
+        onClick={() => setMenuOpen(false)}
+        className={`fixed top-20 left-0 w-full h-[calc(100vh-80px)] md:hidden transition-all duration-300 ${
+          menuOpen
+            ? "bg-black/30 block opacity-100 visible pointer-events-auto"
+            : "opacity-0 invisible pointer-events-none"
+        }`}
+      ></div>
+      <div
+        className={`max-w-sm w-full fixed h-[calc(100vh-80px)] bg-body px-8 py-10 top-20 md:hidden transition-all duration-300 ${
+          menuOpen ? "right-0" : "right-[-24rem]"
+        }`}
+      >
+        <div className="flex flex-col gap-8">
+          <Category
+            activeCategory={activeCategory}
+            setActiveCategory={setActiveCategory}
+          />
+          <Roadmap />
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const Category = ({ activeCategory, setActiveCategory }) => {
   const handleCategory = (name) => {
