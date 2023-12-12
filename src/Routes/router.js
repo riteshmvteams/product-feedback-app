@@ -1,5 +1,7 @@
 import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
+import FeedbackAdd from "../pages/FeedbackAdd";
+import FeedbackEdit from "../pages/FeedbackEdit";
 
 // lazy imported pages
 const HomePage = lazy(() => import("../pages/Homepage"));
@@ -15,5 +17,13 @@ export const router = createBrowserRouter([
   {
     path: "/feedback/:feedbackid",
     element: <SingleProductFeedbackPage />,
+  },
+  {
+    path: "/feedback/add",
+    element: <FeedbackAdd />,
+  },
+  {
+    path: "/feedback/edit/:id",
+    element: <FeedbackEdit />,
   },
 ]);

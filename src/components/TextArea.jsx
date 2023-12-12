@@ -24,7 +24,7 @@ export default function TextArea({
         id={name}
         value={value}
         onChange={handleChange}
-        className="bg-body rounded-lg px-4 py-2 h-28 w-full placeholder:text-slate-500 resize-none focus-visible:outline-clrBtn-voilet focus-visible:outline-dotted focus-visible:outline-2 transition-all duration-200"
+        className="bg-body rounded-lg px-4 py-2 h-24 text-sm w-full placeholder:text-slate-500 resize-none placeholder:text-base focus-visible:outline-clrBtn-voilet focus-visible:outline-dashed focus-visible:outline-1 transition-all duration-200"
         placeholder={placeholder}
       ></textarea>
     </div>

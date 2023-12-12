@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import backIcon from "../assets/shared/back.svg";
 import Button from "./Button";
 
-export default function HeaderTop() {
+export default function HeaderTop({ feedback }) {
   const navigate = useNavigate();
 
   return (
@@ -14,11 +14,15 @@ export default function HeaderTop() {
         <figure>
           <img src={backIcon} alt="backIcon" />
         </figure>
-        <span className="group-hover:underline text-clrText-secondary font-normal text-base ">
-          back
+        <span className="group-hover:underline text-clrText-secondary font-medium text-sm ">
+          Go back
         </span>
       </button>
-      <Button className="bg-clrBtn-blue text-white font-bold text-sm">
+      <Button
+        as="link"
+        to={`/feedback/edit/${feedback?.id}`}
+        className="bg-clrBtn-blue text-white font-bold text-sm"
+      >
         Edit Feeback
       </Button>
     </div>

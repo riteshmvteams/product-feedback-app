@@ -25,12 +25,12 @@ export default function SingleProductFeedbackPage() {
   }, [feedbackid, state?.feedbackList]);
 
   return (
-    <div className="flex flex-col gap-6 max-w-4xl mx-auto w-full px-4">
+    <div className="flex flex-col gap-6 max-w-4xl mx-auto w-full px-4 pt-8 md:pt-0">
       {feedback === null ? (
         <div>You have Entered the wrong id</div>
       ) : (
         <>
-          <HeaderTop />
+          <HeaderTop feedback={feedback} />
           <SingleFeedbackList feedback={feedback} />
           <CommentListing feedback={feedback} />
           <AddComment />
