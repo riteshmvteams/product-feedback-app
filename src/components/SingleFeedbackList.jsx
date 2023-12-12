@@ -25,7 +25,10 @@ export default function SingleFeedbackList({ feedback }) {
         </span>
       </button>
 
-      <Link to={`/feedback/${1}`} className="flex flex-col gap-2 group">
+      <Link
+        to={`/feedback/${feedback?.id}`}
+        className="flex flex-col gap-2 group"
+      >
         <h2 className="text-clrText-primary font-bold text-lg cursor-pointer group-hover:text-clrBlue-300 transition-all duration-300">
           {feedback?.title}
         </h2>

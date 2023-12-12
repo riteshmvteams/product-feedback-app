@@ -2,12 +2,14 @@ import { useState } from "react";
 import checkIcon from "../assets/shared/icon-check.svg";
 import arrowUp from "../assets/shared/icon-arrow-up.svg";
 import arrowDown from "../assets/shared/icon-arrow-down.svg";
+import { productAction } from "../context/productReucer";
 
-export default function DropDown({ type = "input", options }) {
+export default function DropDown({ type = "input", options, dispatch }) {
   const [selected, setSelected] = useState(options[0].name);
   const [open, setOpen] = useState(false);
 
   const handleOption = (selectedOption) => {
+    dispatch({ type: productAction.sort, payload: selectedOption });
     setSelected(selectedOption);
   };
 

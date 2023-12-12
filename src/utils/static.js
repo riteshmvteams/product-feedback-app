@@ -49,7 +49,7 @@ export const roadmap = [
 export const sortedBy = [
   {
     id: crypto.randomUUID(),
-    name: "Most upvotes",
+    name: "Most Upvotes",
   },
   {
     id: crypto.randomUUID(),

@@ -3,8 +3,11 @@ import suggestionIcon from "../assets/suggestions/icon-suggestions.svg";
 import { sortedBy } from "../utils/static";
 
 import DropDown from "./DropDown";
+import { useProductFeeback } from "../context/ProductFeedbackContext";
 
 export default function Header() {
+  const { dispatch } = useProductFeeback();
+
   return (
     <header className="bg-clrBlue-400 py-2 px-8 md:rounded-xl md:px-4 mt-20 md:mt-0">
       <div className="flex justify-between items-center">
@@ -19,7 +22,7 @@ export default function Header() {
           </div>
 
           <div className="ml-4">
-            <DropDown type="sort" options={sortedBy} />
+            <DropDown type="sort" options={sortedBy} dispatch={dispatch} />
           </div>
         </div>
         <Button className="bg-clrBtn-voilet text-white font-semibold">
