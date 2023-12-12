@@ -1,5 +1,6 @@
 import { useProductFeeback } from "../context/ProductFeedbackContext";
 import SingleFeedbackList from "./SingleFeedbackList";
+import NoFeedbackListAvailable from "./NoFeedbackListAvailable";
 
 export default function FeebackList() {
   const { state } = useProductFeeback();
@@ -12,7 +13,7 @@ export default function FeebackList() {
             return <SingleFeedbackList key={feedback.id} feedback={feedback} />;
           })
         ) : (
-          <div>No List Found</div>
+          <NoFeedbackListAvailable />
         )}
       </ul>
     </div>

@@ -1,6 +1,6 @@
 import hamburger from "../assets/shared/mobile/icon-hamburger.svg";
 import iconClose from "../assets/shared/mobile/icon-close.svg";
-import { useReducer, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { allCategories, roadmap } from "../utils/static";
 import { productAction } from "../context/productReucer";
