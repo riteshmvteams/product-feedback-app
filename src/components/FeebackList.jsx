@@ -6,7 +6,7 @@ export default function FeebackList() {
   const { state } = useProductFeeback();
 
   return (
-    <div>
+    <div className="px-3 sm:px-6 md:px-0">
       <ul className="flex flex-col gap-4">
         {state?.filteredList?.length >= 1 ? (
           state?.filteredList?.map((feedback) => {

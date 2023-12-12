@@ -32,7 +32,7 @@ export default function SingleProductFeedbackPage() {
         <>
           <HeaderTop />
           <SingleFeedbackList feedback={feedback} />
-          <CommentListing />
+          <CommentListing feedback={feedback} />
           <AddComment />
         </>
       )}

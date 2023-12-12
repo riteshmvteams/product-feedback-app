@@ -22,7 +22,7 @@ export default function AddComment() {
           setLeftChar={setLeftChar}
         />
         <div className="flex justify-between items-center">
-          <span className="text-base text-clrText-secondary tracking-normal font-medium">
+          <span className="text-sm text-clrText-secondary tracking-normal font-medium">
             {leftChar} Characters left
           </span>
           <Button className="bg-clrBtn-voilet text-white font-bold text-sm">
