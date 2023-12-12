@@ -6,6 +6,7 @@ export default function TextArea({
   setValue,
   leftChar,
   setLeftChar,
+  subLabel,
 }) {
   const handleChange = (e) => {
     if (leftChar < 0) return;
@@ -15,10 +16,14 @@ export default function TextArea({
     setValue(e.target.value);
   };
   return (
-    <div className="flex flex-col gap-1 items-start">
-      <label className="text-sm " htmlFor={name}>
+    <div className="flex flex-col items-start">
+      <label
+        className="text-base font-semibold text-clrText-primary"
+        htmlFor={name}
+      >
         {label}
       </label>
+      <p className="text-clrText-secondary text-sm mb-2">{subLabel}</p>
       <textarea
         name={name}
         id={name}

@@ -15,7 +15,11 @@ export default function NoFeedbackListAvailable() {
         Got a suggestion? Found a bug that needs to be squashed? We love hearing
         about new ideas to improve our app.
       </p>
-      <Button className="bg-clrBtn-voilet hover:opacity-70 text-white font-semibold">
+      <Button
+        as="link"
+        to="/feedback/add"
+        className="bg-clrBtn-voilet hover:opacity-70 text-white font-semibold"
+      >
         + Add Feedback
       </Button>
     </div>

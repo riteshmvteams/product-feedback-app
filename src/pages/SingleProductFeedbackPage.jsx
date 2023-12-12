@@ -11,8 +11,6 @@ export default function SingleProductFeedbackPage() {
   const { state } = useProductFeeback();
   const [feedback, setFeedback] = useState({});
 
-  console.log(feedback);
-
   useEffect(() => {
     const filteredFeedback = state?.feedbackList?.filter(
       (list) => list?.id === +feedbackid
