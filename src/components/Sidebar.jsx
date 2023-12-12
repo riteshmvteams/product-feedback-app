@@ -1,8 +1,10 @@
 import hamburger from "../assets/shared/mobile/icon-hamburger.svg";
 import iconClose from "../assets/shared/mobile/icon-close.svg";
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import { Link } from "react-router-dom";
 import { allCategories, roadmap } from "../utils/static";
+import { productAction } from "../context/productReucer";
+import { useProductFeeback } from "../context/ProductFeedbackContext";
 
 export default function Sidebar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -75,8 +77,10 @@ const GradientBgSection = ({
 };
 
 const Category = ({ activeCategory, setActiveCategory }) => {
+  const { dispatch } = useProductFeeback();
   const handleCategory = (name) => {
     setActiveCategory(name);
+    dispatch({ type: productAction.filterCategory, payload: name });
   };
   return (
     <div className="bg-white p-4 rounded-lg">

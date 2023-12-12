@@ -7,9 +7,13 @@ export default function FeebackList() {
   return (
     <div>
       <ul className="flex flex-col gap-4">
-        {state?.feedbackList?.map((feedback) => {
-          return <SingleFeedbackList key={feedback.id} feedback={feedback} />;
-        })}
+        {state?.filteredList?.length >= 1 ? (
+          state?.filteredList?.map((feedback) => {
+            return <SingleFeedbackList key={feedback.id} feedback={feedback} />;
+          })
+        ) : (
+          <div>No List Found</div>
+        )}
       </ul>
     </div>
   );

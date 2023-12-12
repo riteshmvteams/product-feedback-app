@@ -2,11 +2,17 @@ import { Link } from "react-router-dom";
 import arrowUp from "../assets/shared/icon-arrow-up.svg";
 import whiteArrowUp from "../assets/shared/white-arrowup.svg";
 import commentIcon from "../assets/shared/icon-comments.svg";
+import { useProductFeeback } from "../context/ProductFeedbackContext";
+import { productAction } from "../context/productReucer";
 
 export default function SingleFeedbackList({ feedback }) {
+  const { dispatch } = useProductFeeback();
   return (
     <li className="bg-white px-4 xl:pr-8 py-6 rounded-lg flex gap-6 items-start">
       <button
+        onClick={() =>
+          dispatch({ type: productAction.toggleUpvote, payload: feedback.id })
+        }
         className={`flex flex-col gap-2 w-14 py-4 items-center rounded-lg transition-all duration-200 ${
           feedback?.upvoted
             ? "bg-clrBlue-300 text-white"
