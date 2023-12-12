@@ -111,7 +111,7 @@ const Roadmap = () => {
     <div className="min-w-[250px] bg-white rounded-lg px-4 py-4 flex flex-col gap-4 xl:min-w-max">
       <div className="flex justify-between items-center">
         <h3 className="text-clrText-primary text-xl font-semibold">Roadmap</h3>
-        <Link to="/boards" className="text-clrBtn-blue underline text-sm">
+        <Link to="/roadmap" className="text-clrBtn-blue underline text-sm">
           view
         </Link>
       </div>
