@@ -11,7 +11,7 @@ export default function TextArea({
   const handleChange = (e) => {
     if (leftChar < 0) return;
     if (leftChar) {
-      setLeftChar(leftChar - e.target.value.length);
+      setLeftChar(256 - e.target.value.length);
     }
     setValue(e.target.value);
   };

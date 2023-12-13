@@ -12,20 +12,7 @@ export default function SingleFeedbackList({ feedback }) {
       <div className="hidden md:block">
         <UpvoteButton dispatch={dispatch} feedback={feedback} />
       </div>
-      <Link
-        to={`/feedback/${feedback?.id}`}
-        className="flex flex-col gap-2 group"
-      >
-        <h2 className="text-clrText-primary font-bold text-lg cursor-pointer group-hover:text-clrBlue-300 transition-all duration-300">
-          {feedback?.title}
-        </h2>
-        <p className="text-clrText-secondary text-sm">
-          {feedback?.description}
-        </p>
-        <span className="px-4 py-2 transition-all capitalize duration-200 w-max text-clrBlue-300 cursor-pointer text-sm font-semibold rounded-lg block bg-clrBlue-100 hover:bg-clrBlue-200">
-          {feedback?.category}
-        </span>
-      </Link>
+      <FeedbackDetails feedback={feedback} />
       <div className="md:ml-auto md:self-center flex justify-between w-full md:w-auto">
         <div className="md:hidden">
           <UpvoteButton dispatch={dispatch} feedback={feedback} horizontal />
@@ -43,7 +30,24 @@ export default function SingleFeedbackList({ feedback }) {
   );
 }
 
-const UpvoteButton = ({ dispatch, feedback, horizontal = false }) => {
+export const FeedbackDetails = ({ feedback }) => {
+  return (
+    <Link
+      to={`/feedback/${feedback?.id}`}
+      className="flex flex-col gap-2 group"
+    >
+      <h2 className="text-clrText-primary font-bold text-lg cursor-pointer group-hover:text-clrBlue-300 transition-all duration-300">
+        {feedback?.title}
+      </h2>
+      <p className="text-clrText-secondary text-sm">{feedback?.description}</p>
+      <span className="px-4 py-2 transition-all capitalize duration-200 w-max text-clrBlue-300 cursor-pointer text-sm font-semibold rounded-lg block bg-clrBlue-100 hover:bg-clrBlue-200">
+        {feedback?.category}
+      </span>
+    </Link>
+  );
+};
+
+export const UpvoteButton = ({ dispatch, feedback, horizontal = false }) => {
   return (
     <button
       onClick={() =>
