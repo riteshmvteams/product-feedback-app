@@ -6,9 +6,19 @@ import DropDown from "../components/DropDown";
 import Button from "../components/Button";
 import Modal from "../components/Modal";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { useProductFeeback } from "../context/ProductFeedbackContext";
+import { productAction } from "../context/productReucer";
 
 export default function FeedbackEdit() {
   const [visible, setVisible] = useState(false);
+  const { id } = useParams();
+  const { dispatch } = useProductFeeback();
+
+  const handleDelete = () => {
+    dispatch({ type: productAction.deleteFeedback, payload: id });
+  };
+
   return (
     <>
       <div className="max-w-xl mx-auto w-full">
@@ -80,7 +90,10 @@ export default function FeedbackEdit() {
           </p>
 
           <div className="mt-6 flex justify-end gap-6">
-            <Button className="bg-red-500 text-white font-semibold text-sm">
+            <Button
+              onClick={() => handleDelete()}
+              className="bg-red-500 text-white font-semibold text-sm"
+            >
               Delete
             </Button>
             <Button

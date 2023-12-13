@@ -8,6 +8,7 @@ export const productAction = {
   filterCategory: "FILTER_CATEGORY",
   addComment: "ADD_COMMENT",
   addReply: "ADD_REPLY",
+  deleteFeedback: "DELETE_FEEDBACK",
 };
 
 export const initialState = {
@@ -170,6 +171,22 @@ export const productReducer = (state, action) => {
         ...state,
         filteredList: updateResult,
         feedbackList: updateResult,
+      };
+
+    case productAction.deleteFeedback:
+      console.log(action.payload);
+      const listAfterDelete = state.feedbackList.filter(
+        (feedback) => feedback.id !== action.payload
+      );
+
+      console.log(listAfterDelete);
+
+      localStorage.setItem("feedbackList", JSON.stringify(listAfterDelete));
+
+      return {
+        ...state,
+        filteredList: listAfterDelete,
+        feedbackList: listAfterDelete,
       };
 
     default:

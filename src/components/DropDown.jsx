@@ -74,7 +74,10 @@ export default function DropDown({
           >
             {options?.map((option) => {
               return (
-                <li key={option?.id} className="border-b border-blue-100 group">
+                <li
+                  key={option?.name}
+                  className="border-b border-blue-100 group"
+                >
                   <button
                     onClick={() => handleOption(option.name)}
                     className="py-3 px-4 w-full text-left hover:bg-clrBlue-100 text-sm text-slate-500 flex justify-between items-center"
