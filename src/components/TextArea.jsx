@@ -7,6 +7,7 @@ export default function TextArea({
   leftChar,
   setLeftChar,
   subLabel,
+  error,
 }) {
   const handleChange = (e) => {
     if (leftChar < 0) return;
@@ -32,6 +33,11 @@ export default function TextArea({
         className="bg-body rounded-lg px-4 py-2 h-24 text-sm w-full placeholder:text-slate-500 resize-none placeholder:text-base focus-visible:outline-clrBtn-voilet focus-visible:outline-dashed focus-visible:outline-1 transition-all duration-200"
         placeholder={placeholder}
       ></textarea>
+      {error && (
+        <p className="text-red-500 bg-red-50 px-4 rounded-md text-sm mt-1">
+          {error}
+        </p>
+      )}
     </div>
   );
 }

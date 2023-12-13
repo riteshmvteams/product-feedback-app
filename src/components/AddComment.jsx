@@ -5,6 +5,8 @@ import { useProductFeeback } from "../context/ProductFeedbackContext";
 import { productAction } from "../context/productReucer";
 
 export default function AddComment({ id }) {
+  const [error, setError] = useState(null);
+  const [checkVal, setCheckVal] = useState(false);
   const { dispatch } = useProductFeeback();
   const [leftChar, setLeftChar] = useState(256);
   const { state } = useProductFeeback();
@@ -14,13 +16,27 @@ export default function AddComment({ id }) {
     user: state.currentUser,
   });
 
+  const checkValidation = (value) => {
+    if (value === "") {
+      setError("This Field is required");
+      return true;
+    } else {
+      setError(null);
+      return false;
+    }
+  };
+
   const changeHandler = (e) => {
     setCommentDetails((prev) => ({ ...prev, content: e.target.value }));
+    if (checkVal) {
+      checkValidation(e.target.value);
+    }
   };
 
   const handleAddComment = () => {
-    if (commentDetails.content === "") return;
-
+    const error = checkValidation(commentDetails.content);
+    setCheckVal(true);
+    if (error) return;
     dispatch({
       type: productAction.addComment,
       payload: { comment: commentDetails, id: id },
@@ -47,6 +63,7 @@ export default function AddComment({ id }) {
           setValue={changeHandler}
           leftChar={leftChar}
           setLeftChar={setLeftChar}
+          error={error}
         />
         <div className="flex justify-between items-center">
           <span className="text-sm text-clrText-secondary tracking-normal font-medium">
