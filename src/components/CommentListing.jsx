@@ -14,36 +14,23 @@ export default function CommentListing({ feedback }) {
           <ul className="flex flex-col">
             {feedback?.comments?.map((comment, index) => {
               return (
-                <li
-                  key={index}
-                  className="flex items-start gap-4 sm:gap-8 border-b-2 border-b-body py-8 last-of-type:border-none"
-                >
-                  <figure className="rounded-full overflow-hidden w-10 h-10 select-none flex-shrink-0">
-                    <img
-                      src={comment?.user?.image}
-                      alt={comment?.user?.username}
-                      title={comment?.user?.name}
-                    />
-                  </figure>
-                  <div className="flex flex-col grow">
-                    <div className="flex mt-0.5 justify-between items-center">
-                      <div className="flex flex-col">
-                        <h4 className="font-semibold text-sm text-clrText-primary">
-                          {comment?.user?.name}
-                        </h4>
-                        <span className="text-sm text-clrText-secondary">
-                          @{comment?.user?.username}
-                        </span>
-                      </div>
-                      <button className="text-clrBtn-blue font-semibold text-sm hover:underline transition-all duration-300">
-                        Reply
-                      </button>
-                    </div>
-                    <p className="mt-6 text-base text-clrText-secondary">
-                      {comment?.content}
-                    </p>
-                  </div>
-                </li>
+                <div key={index} className={`relative`}>
+                  <SingleComment comment={comment} />
+                  {comment?.replies && (
+                    <ul className="ml-16 ">
+                      <div className="absolute top-24 left-[18px] w-[1px] rounded-xl h-[70%] bg-slate-100"></div>
+                      {comment?.replies?.map((reply, index) => {
+                        return (
+                          <SingleComment
+                            key={index}
+                            comment={reply}
+                            replyTo={reply.replyingTo}
+                          />
+                        );
+                      })}
+                    </ul>
+                  )}
+                </div>
               );
             })}
           </ul>
@@ -52,3 +39,40 @@ export default function CommentListing({ feedback }) {
     </div>
   );
 }
+
+const SingleComment = ({ comment, replyTo }) => {
+  return (
+    <li className="flex items-start gap-4 sm:gap-8 py-8 last-of-type:border-none">
+      <figure className="rounded-full overflow-hidden w-10 h-10 select-none flex-shrink-0">
+        <img
+          src={comment?.user?.image}
+          alt={comment?.user?.username}
+          title={comment?.user?.name}
+        />
+      </figure>
+      <div className="flex flex-col grow">
+        <div className="flex mt-0.5 justify-between items-center">
+          <div className="flex flex-col">
+            <h4 className="font-semibold text-sm text-clrText-primary">
+              {comment?.user?.name}
+            </h4>
+            <span className="text-sm text-clrText-secondary">
+              @{comment?.user?.username}
+            </span>
+          </div>
+          <button className="text-clrBtn-blue font-semibold text-sm hover:underline transition-all duration-300">
+            Reply
+          </button>
+        </div>
+        <p className="mt-6 text-base text-clrText-secondary">
+          {replyTo && (
+            <span className="text-clrBtn-voilet font-semibold text-sm">
+              @{replyTo}
+            </span>
+          )}{" "}
+          {comment?.content}
+        </p>
+      </div>
+    </li>
+  );
+};

@@ -7,7 +7,7 @@ import Button from "../components/Button";
 
 export default function FeedbackAdd() {
   return (
-    <div className="max-w-3xl mx-auto w-full">
+    <div className="max-w-xl mx-auto w-full">
       <HeaderTop hidden />
 
       <div className="relative px-6 bg-white rounded-xl mt-16 pt-16 pb-10">
