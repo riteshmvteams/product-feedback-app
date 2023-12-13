@@ -31,7 +31,7 @@ export default function SingleProductFeedbackPage() {
           <HeaderTop feedback={feedback} />
           <SingleFeedbackList feedback={feedback} />
           <CommentListing feedback={feedback} />
-          <AddComment />
+          <AddComment id={feedback?.id} />
         </>
       )}
     </div>

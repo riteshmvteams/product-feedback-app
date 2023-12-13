@@ -13,7 +13,7 @@ export default function TextArea({
     if (leftChar) {
       setLeftChar(256 - e.target.value.length);
     }
-    setValue(e.target.value);
+    setValue(e);
   };
   return (
     <div className="flex flex-col items-start">
