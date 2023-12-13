@@ -7,6 +7,7 @@ export const productAction = {
   toggleUpvote: "TOGGLE_UPVOTE",
   filterCategory: "FILTER_CATEGORY",
   addComment: "ADD_COMMENT",
+  addReply: "ADD_REPLY",
 };
 
 export const initialState = {
@@ -134,6 +135,42 @@ export const productReducer = (state, action) => {
       localStorage.setItem("feedbackList", JSON.stringify(updated));
 
       return { ...state, filteredList: updated, feedbackList: updated };
+
+    case productAction.addReply:
+      const updateResult = state.feedbackList.map((feedback) => {
+        if (feedback.id === action.payload.id) {
+          return {
+            ...feedback,
+            comments: feedback.comments?.map((comment) => {
+              if (comment.id === action.payload.commentId) {
+                if (comment.replies) {
+                  return {
+                    ...comment,
+                    replies: [...comment.replies, action.payload.reply],
+                  };
+                } else {
+                  return {
+                    ...comment,
+                    replies: [action.payload.reply],
+                  };
+                }
+              } else {
+                return comment;
+              }
+            }),
+          };
+        } else {
+          return feedback;
+        }
+      });
+
+      localStorage.setItem("feedbackList", JSON.stringify(updateResult));
+
+      return {
+        ...state,
+        filteredList: updateResult,
+        feedbackList: updateResult,
+      };
 
     default:
       return { ...state };
