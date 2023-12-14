@@ -174,12 +174,9 @@ export const productReducer = (state, action) => {
       };
 
     case productAction.deleteFeedback:
-      console.log(action.payload);
-      const listAfterDelete = state.feedbackList.filter(
-        (feedback) => feedback.id !== action.payload
+      const listAfterDelete = state?.feedbackList?.filter(
+        (feedback) => feedback.id !== +action.payload
       );
-
-      console.log(listAfterDelete);
 
       localStorage.setItem("feedbackList", JSON.stringify(listAfterDelete));
 

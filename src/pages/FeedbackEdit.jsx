@@ -6,17 +6,25 @@ import DropDown from "../components/DropDown";
 import Button from "../components/Button";
 import Modal from "../components/Modal";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useProductFeeback } from "../context/ProductFeedbackContext";
 import { productAction } from "../context/productReucer";
+import toast from "react-hot-toast";
 
 export default function FeedbackEdit() {
   const [visible, setVisible] = useState(false);
   const { id } = useParams();
-  const { dispatch } = useProductFeeback();
+  const { dispatch, state } = useProductFeeback();
+  const navigate = useNavigate();
+
+  const activeFeedback = state.feedbackList.filter(
+    (feedback) => feedback.id === +id
+  )[0];
 
   const handleDelete = () => {
     dispatch({ type: productAction.deleteFeedback, payload: id });
+    toast.success(`${activeFeedback.title} is Deleted Successfully`);
+    navigate("/");
   };
 
   return (
